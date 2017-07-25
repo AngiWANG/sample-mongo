@@ -47,6 +47,7 @@ public class MongoDbTest {
 		assertEquals("Chuck Wagon", foundOrder.getCustomer());
 		assertEquals(2, foundOrder.getItems().size());
 
+		// begin 自定义查询方法
 		// Finding an order by a single field value
 		List<Order> chucksOrders = orderRepository.findByCustomer("Chuck Wagon");
 		assertEquals(1, chucksOrders.size());
@@ -67,12 +68,22 @@ public class MongoDbTest {
 
 		List<Order> chucksPhoneOrders = orderRepository.findByCustomerAndType("Chuck Wagon", "PHONE");
 		assertEquals(0, chucksPhoneOrders.size());
+		// end 自定义查询方法
 
+		// begin 声明自定义查询
 		// Finding an order by a custom query method
 		List<Order> chucksOrders2 = orderRepository.findChucksOrders("WEB");
 		assertEquals(1, chucksOrders2.size());
 		assertEquals("Chuck Wagon", chucksOrders2.get(0).getCustomer());
 		assertEquals(2, chucksOrders2.get(0).getItems().size());
+		// end 声明自定义查询
+
+		// begin 混合自定义
+		List<Order> orderByType = orderRepository.findOrderByType("NET");
+		assertEquals(1, orderByType.size());
+		assertEquals("Chuck Wagon", orderByType.get(0).getCustomer());
+		assertEquals(2, orderByType.get(0).getItems().size());
+		// end 混合自定义
 
 		// Deleting an order
 		orderRepository.delete(savedOrder.getId());
@@ -84,14 +95,17 @@ public class MongoDbTest {
 		Order order = new Order();
 		order.setCustomer("Chuck Wagon");
 		order.setType("WEB");
+
 		Item item1 = new Item();
 		item1.setProduct("Spring in Action");
 		item1.setQuantity(2);
 		item1.setPrice(29.99);
+
 		Item item2 = new Item();
 		item2.setProduct("Module Java");
 		item2.setQuantity(31);
 		item2.setPrice(29.95);
+
 		order.setItems(Arrays.asList(item1, item2));
 		return order;
 	}

@@ -7,7 +7,12 @@ import org.springframework.data.mongodb.repository.Query;
 
 import orders.Order;
 
-//混合自定义
+/**
+ * 订单Repository
+ * 
+ * @author angi
+ *
+ */
 public interface OrderRepository extends MongoRepository<Order, String>, OrderRepositoryCustom {
 
 	// begin 自定义查询方法
