@@ -15,7 +15,7 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
 	private MongoTemplate mongoTemplate;
 
 	@Override
-	public List<Order> findOrderByType(String t) {
+	public List<Order> findWebOrders(String t) {
 		String type = t.equals("NET") ? "WEB" : t;
 		Criteria where = Criteria.where("type").is(type);
 		Query query = Query.query(where);

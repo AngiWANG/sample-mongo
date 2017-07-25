@@ -79,10 +79,10 @@ public class MongoDbTest {
 		// end 声明自定义查询
 
 		// begin 混合自定义
-		List<Order> orderByType = orderRepository.findOrderByType("NET");
-		assertEquals(1, orderByType.size());
-		assertEquals("Chuck Wagon", orderByType.get(0).getCustomer());
-		assertEquals(2, orderByType.get(0).getItems().size());
+		List<Order> webOrders = orderRepository.findWebOrders("NET");
+		assertEquals(1, webOrders.size());
+		assertEquals("Chuck Wagon", webOrders.get(0).getCustomer());
+		assertEquals(2, webOrders.get(0).getItems().size());
 		// end 混合自定义
 
 		// Deleting an order

@@ -7,6 +7,6 @@ import orders.Order;
 //混合自定义
 public interface OrderRepositoryCustom {
 
-	List<Order> findOrderByType(String type);
+	List<Order> findWebOrders(String type);
 
 }
