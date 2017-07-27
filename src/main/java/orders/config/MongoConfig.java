@@ -8,6 +8,7 @@ import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 
 @Configuration
+//扫描Repository所在包
 @EnableMongoRepositories(basePackages = "orders.db")
 public class MongoConfig extends AbstractMongoConfiguration {
 
